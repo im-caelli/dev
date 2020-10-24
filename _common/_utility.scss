@@ -1,0 +1,14 @@
+// BS
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+$xl-break: "screen and (min-width:" + map_get($grid-breakpoints, 'xl') +")";
+$lg-break: "screen and (min-width:" + map_get($grid-breakpoints, 'lg') +")";
+$md-break: "screen and (min-width:" + map_get($grid-breakpoints, 'md') +")";
+$sm-break: "screen and (min-width:" + map_get($grid-breakpoints, 'sm') +")";
+$xs-break: "screen and (max-width:" + map_get($grid-breakpoints, 'sm') +")";

@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+@import "../_common/reset.css";
+@import "../_common/utility";
+
+:root {
+  --msg-content-height: 550px;
+  --msg-spacing: 1em;
+  --msg1-height: 100px;
+  --msg2-height: 390px;
+  --msg3-height: 100px;
+}
+
+// Mixins
+
+// Display Pic
+@mixin dp($side: null, $image) {
+  &:#{$side} {
+    content: '';
+    display: inline-block;
+    margin: .5rem 0;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-color: #333;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid #C8CDD0;
+    background-image: url(img/#{$image}.jpg);
+  }
+}
+
+
+
+body {
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #FBDA61;
+  background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.msg {
+  &-container {
+    width: 450px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+    0 2px 2px rgba(0,0,0,0.12), 
+    0 4px 4px rgba(0,0,0,0.12), 
+    0 8px 8px rgba(0,0,0,0.12),
+    0 16px 16px rgba(0,0,0,0.12);
+    padding: 1rem;
+    overflow: hidden;
+
+    @media #{$xs-break} {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  &-content {
+    height: var(--msg-content-height);
+    position: relative;
+  }
+
+  &-text {
+    display: flex;
+    align-items: flex-start;
+    position: absolute;
+    animation-iteration-count: infinite;
+    animation-duration: 20s;
+    animation-fill-mode: forwards;
+
+    span {
+      //display: block;
+      padding: 1rem;
+      border-radius: .75rem;
+      margin: .5rem;
+      line-height: 1.5; 
+      min-height: 75px;
+      max-width: 300px;
+
+      @media #{$xs-break} {
+        max-width: 275px;
+      }
+    }
+
+    img {
+      object-fit: cover;
+      height: 300px;
+      width: auto;
+    }
+  }
+
+  &-send {
+    justify-content: flex-end;
+    span {
+      background-color: #4A90E2;
+      color: #fff;
+    }
+    
+    @include dp(after, k);
+  }
+
+  &-receive {
+    span {
+      background-color: #ececec;
+    }
+
+    @include dp(before, a);
+  }
+
+}
+
+// animations
+
+$conversation: (
+  1: msg1,
+  2: msg2,
+  3: msg3,
+);
+
+@each $msg, $animation in $conversation {
+ #msg-#{$msg} { animation-name: $animation;}
+}
+
+
+@keyframes msg1 {
+  0% { 
+    //Starting Point: Height of container minus height of msg1
+    top: calc(var(--msg-content-height) - var(--msg1-height));
+    left: -4em;
+    transform: scale(0);
+  }
+  2% {
+    // Enter msg1 (off screen zoom)
+    // +2
+    top: calc(var(--msg-content-height) - var(--msg1-height));
+    left: 0;
+    transform: scale(1);
+  }
+  6% {
+    // Pause
+    top: calc(var(--msg-content-height) - var(--msg1-height));
+  }
+  8% {
+    // Move msg1 up to make room for msg2: Height of container minus both msg
+    // +2
+    top: calc(var(--msg-content-height) - var(--msg1-height) - var(--msg2-height));
+  }
+  30% {
+    // Pause
+    // +2
+    top: calc(var(--msg-content-height) - var(--msg1-height) - var(--msg2-height));
+  }
+  
+  32% {
+    // End point: Top
+    top: 0;
+    left: 0;
+  }
+}
+
+@keyframes msg2 {
+  0% {
+    //Starting Point: Same as msg1
+    top: calc(var(--msg-content-height) - var(--msg1-height));
+    left: -4em;
+    transform: scale(0);
+  }
+  6% {
+    // Pause: Wait for msg1 to move up
+    top: calc(var(--msg-content-height) - var(--msg1-height));
+    left: -4em;
+    transform: scale(0);
+  }
+  
+  8% {
+    // Enter msg2: Position height - height of msg2, off screen zoom
+    // +2
+    top: calc(var(--msg-content-height) - var(--msg2-height));
+    left: 0;
+    transform: scale(1);
+  }
+
+  30% {
+    // Pause
+    top: calc(var(--msg-content-height) - var(--msg2-height));
+    // +2
+  }
+
+  32% {
+    // End point: Container height minus preceding messages
+    top: calc(var(--msg1-height));
+  }
+  100% {
+    // Wait
+    top: calc(var(--msg1-height));
+  }
+}
+
+@keyframes msg3 {
+  0% {
+    //Starting Point: Same as msg1
+    top: calc(var(--msg-content-height) - var(--msg1-height));
+    right: -4em;
+    transform: scale(0);
+  }
+  30% {
+    // Wait for other messages
+    top: calc(var(--msg-content-height) - var(--msg1-height));
+    right: -4em;
+    transform: scale(0);
+  }
+  
+  32% {
+    // Enter msg2: Position height - height of msg2, off screen zoom
+    // Also End Point, +2
+    top: calc(var(--msg-content-height) - var(--msg3-height) );
+    right: 0;
+    transform: scale(1);
+  }
+
+  100% {
+    // Wait for rest of animation
+    top: calc(var(--msg-content-height) - var(--msg3-height) );
+    right: 0;
+    transform: scale(1);
+  }
+
+}
