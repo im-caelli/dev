@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Caelli | Dev</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='css.css'>
+  
+</head>
+<body class="scene">
+  <div class="content">
+    <p class="dropcap">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus impedit distinctio nobis debitis ipsam laborum quod eaque! Cumque saepe atque, quis provident quae eius doloribus quidem vitae, facere aspernatur maxime.</p>
+    <p>Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Qui autem consequuntur praesentium rem libero velit eum, saepe vero inventore animi labore magni ea reiciendis! Hic quibusdam voluptatum laborum debitis a totam modi, similique impedit expedita porro ipsum ea!</p>
+  </div>
+  <div class="frame">
+    <div class="msg-container conversation-a">
+      <div class="msg-content">
+        <div id="msg-1" class="msg-receive msg-text"><span>Hey, I think I've made some gains. You proud?</span></div>
+        <div id="msg-2" class="msg-receive msg-text"><span><img src="img/gymgains.jpg" alt="Asami's Thirst Trap"></span></div>
+        <div id="msg-3" class="msg-send msg-text"><span>So proud! We should add pistol squats to your routine</span></div>
+      </div>
+
+    </div>
+  </div>
+  
+  <div class="content">
+    <p class="dropcap">Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Qui autem consequuntur praesentium rem libero velit eum, saepe vero inventore animi labore magni ea reiciendis! Hic quibusdam voluptatum laborum debitis a totam modi, similique impedit expedita porro ipsum ea!</p>
+    <p>Doloribus in, fuga suscipit obcaecati facilis itaque dignissimos fugiat sed minima assumenda aliquam, similique a. Quam velit non sequi laudantium dolores commodi laboriosam impedit, vel incidunt voluptatum nobis animi facilis!</p>
+    <p>Repudiandae odit illo natus, odio nesciunt dolores deleniti beatae ipsa a esse, nam hic voluptate perspiciatis, vel corrupti! Deserunt quos commodi ut blanditiis doloribus impedit corporis expedita perferendis. Blanditiis, itaque. Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
+  </div>
+
+
+  <div class="frame frame-b">
+    <div class="msg-container conversation-b">
+      <div class="msg-content">
+        <div id="b-msg-1" class="msg-send msg-text"><span>Ok, but what happens when we send a lot more messages and there's overflow? </span></div>
+        <div id="b-msg-2" class="msg-receive msg-text"><span>I don't know let's check</span></div>
+        <div id="b-msg-3" class="msg-send msg-text"><span>That's cool, I guess it's just negative margins.</span></div>
+        <div id="b-msg-4" class="msg-receive msg-text"><span>Fuck, text wrapping and height changes need to be accounted for. This is a terrible solution.</span></div>
+        <div id="b-msg-5" class="msg-send msg-text"><span>Should probably make this more efficient and be able do easily repeat conversations with some adjustments with placement and timing. 🤔</span></div>
+        <div id="b-msg-6" class="msg-send msg-text"><span>Holy shit, emojis! 😲 But also what if we move the thread instead of per message?</span></div>
+        <div id="b-msg-7" class="msg-receive msg-text"><span>This animation is so fucking jank. Staggering still relies on text message height. And I don't know how I feel about the cut off. 😢 </span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="content">
+    <p>Notes:</p>
+    <ul>
+      <li>Needs to be reusable with minor adjustments
+        <ul>     
+          <li>Current css-only solution sucks ass. (Not very efficient) Should probably use JS</li>
+        </ul>
+      </li>
+      <li>Animation currently relies on a static height of text. Not very flexible Need to account for text wrapping (+responsive).
+        <ul>
+          <li>Maybe placements need to be established and achieve illusion by moving entire conversation instead of per message.</li>
+          <li>Staggering still relies on message height and zoom + fade animation would need to be applied per message and synced with scroll... manually :/</li>
+          <li>Should only start when frame enters screen.</li>
+          <li>Duration indicator? Countdown? Progress bar?</li>
+        </ul>
+      </li>
+      <li>Too much for one page?
+        <ul>
+          <li>Anchors?</li>
+          <li>Multi page?</li>
+          <li>Light box for art?</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- <script src='js.js'></script> -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177508404-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-177508404-1');
+  </script>
+
+</body>
+</html>

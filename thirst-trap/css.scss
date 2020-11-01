@@ -4,6 +4,7 @@
 @import "../_common/utility";
 
 :root {
+  // VARIABLES PER MESSAGE
   --msg-content-height: 550px;
   --msg-spacing: 1em;
   --msg1-height: 100px;
@@ -31,6 +32,15 @@
   }
 }
 
+// Box Shadow
+
+@mixin box-shadow {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+    0 2px 2px rgba(0,0,0,0.12), 
+    0 4px 4px rgba(0,0,0,0.12), 
+    0 8px 8px rgba(0,0,0,0.12),
+    0 16px 16px rgba(0,0,0,0.12);
+}
 
 
 body {
@@ -49,11 +59,7 @@ body {
   &-container {
     width: 450px;
     background-color: #f9f9f9;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
-    0 2px 2px rgba(0,0,0,0.12), 
-    0 4px 4px rgba(0,0,0,0.12), 
-    0 8px 8px rgba(0,0,0,0.12),
-    0 16px 16px rgba(0,0,0,0.12);
+    @include box-shadow();
     padding: 1rem;
     overflow: hidden;
 
@@ -73,7 +79,7 @@ body {
     align-items: flex-start;
     position: absolute;
     animation-iteration-count: infinite;
-    animation-duration: 20s;
+    animation-duration: 15s; // need to be adjustable
     animation-fill-mode: forwards;
 
     span {
@@ -119,6 +125,9 @@ body {
 
 // animations
 
+    // Key maps per convo
+    // Prefix keyframe names
+    // messages mapped to animation keyframe
 $conversation: (
   1: msg1,
   2: msg2,
@@ -233,4 +242,267 @@ $conversation: (
     transform: scale(1);
   }
 
+}
+
+
+
+.scene {
+  background-color: #21D4FD;
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+
+  .content {
+    width: 90%;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    margin: 2rem auto;
+    @include box-shadow();
+
+    @media #{$md-break} {
+      width: 75%;
+    }
+
+    p {
+      margin-bottom: 2rem;
+      line-height: 1.5;
+      color: #333;
+
+      &.dropcap::first-letter {
+        float: left;
+        font-size: 2rem;
+        line-height: 1;
+        margin: 0 1rem 0 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 1.25em;
+      li {
+        margin-bottom: .5rem;
+
+        ul{
+          margin-top: .5rem;
+        }
+      }
+    }
+  }
+
+
+  .frame {
+    width: 100%;
+    height: 600px;
+    background-image: url(img/scene.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    // filter: blur(20px);
+    backdrop-filter: blur(5px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-b {
+      overflow: hidden;
+    }
+    @media #{$md-break} {
+      background-attachment: fixed;
+      justify-content: flex-end;
+    }
+  }
+
+  .msg-container {
+    background: none;
+    box-shadow: none;
+  }
+
+  .msg-send span {
+    background-color: #3473bd;
+  }
+
+  .msg-text span {
+    @include box-shadow();
+  }
+
+
+  .conversation-b {
+    // CONVERSATION B
+    overflow: hidden;
+    .msg-content {
+      position: relative;
+      
+      bottom: -550px; // Height of content container
+      animation-name: move-convo;
+      animation-iteration-count: infinite;
+      animation-duration: 20s;
+      animation-fill-mode: none;
+
+      @media #{$md-break} {
+        animation-name: move-convo-lg
+      }
+    }
+
+    .msg-text {
+      // Adjust duration
+      position: relative;
+    }
+    .msg-send {
+      // Adjust duration
+      right: 0;
+    }
+
+    .msg-receive {
+      // Adjust duration
+      left: 0;
+    }
+
+
+    @keyframes move-convo {
+      0% {
+        //Starting Point: Off screen
+        bottom: -600px; //height
+      }
+      8% {
+        //Pause
+        bottom: -600px; //height
+      }
+      10% {
+        //msg 1
+        bottom: -450px; //height
+      }
+      18% {
+        //Pause
+        bottom: -450px; //height
+      }
+      20% {
+        //msg 2
+        bottom: -355px; //height
+      }
+      28% {
+        //Pause
+        bottom: -355px; //height
+      }
+      30% {
+        //msg 3
+        bottom: -275px; //height
+      }
+      38% {
+        //Pause
+        bottom: -275px; //height
+      }
+      40% {
+        //msg4
+        bottom: -155px; //height
+      }
+      48% {
+        //Pause
+        bottom: -155px; //height
+      }
+
+      50% {
+        //msg5
+        bottom: 0; //height
+      }
+      58% {
+        //Pause
+        bottom: 0; //height
+      }
+
+      60% {
+        //Starting Point: Off screen
+        bottom:100px; //height
+      }
+
+      68% {
+        //Starting Point: Off screen
+        bottom:100px; //height
+      }
+
+      70% {
+        bottom: 250px;
+      }
+      100% {
+        bottom: 250px;
+      }
+    }
+    
+    @keyframes move-convo-lg {
+      0% {
+        //Starting Point: Off screen
+        bottom: -600px; //height
+      }
+      8% {
+        //Pause
+        bottom: -600px; //height
+      }
+      10% {
+        //msg 1
+        bottom: -475px; //height
+      }
+      18% {
+        //Pause
+        bottom: -475px; //height
+      }
+      20% {
+        //msg 2
+        bottom: -375px; //height
+      }
+      28% {
+        //Pause
+        bottom: -375px; //height
+      }
+      30% {
+        //msg 3
+        bottom: -280px; //height
+      }
+      38% {
+        //Pause
+        bottom: -280px; //height
+      }
+      40% {
+        //msg4
+        bottom: -175px; //height
+      }
+      48% {
+        //Pause
+        bottom: -175px; //height
+      }
+
+      50% {
+        //msg5
+        bottom: -45px; //height
+      }
+      58% {
+        //Pause
+        bottom: -45px; //height
+      }
+
+      60% {
+        //Starting Point: Off screen
+        bottom:75px; //height
+      }
+
+      68% {
+        //Starting Point: Off screen
+        bottom:75px; //height
+      }
+
+      70% {
+        bottom: 200px;
+      }
+      100% {
+        bottom: 200px;
+      }
+    }
+   
+    
+  }
 }
