@@ -181,21 +181,24 @@ monogatari.script ({
 		'hide character bo',
 		'bo *cooks*',
 		'show character bo food-1 fadeIn end-fadeOut',
-		'bo Here you go! Enjoy!',
+		'bo Here you go!',
+		'bo Enjoy!',
 		'jump exit'
 	],
 	'food-2': [
 		'hide character bo',
 		'bo *cooks*',
 		'show character bo food-2 bounceIn end-bounceIn',
-		'bo Here you go! Enjoy!',
+		'bo Here you go!',
+		'bo Enjoy!',
 		'jump exit'
 	],
 	'food-3': [
 		'hide character bo',
 		'bo *cooks*',
 		'show character bo food-3 bounce end-fadeOut',
-		'bo Here you go! Enjoy!',
+		'bo Here you go!',
+		'bo Enjoy!',
 		'jump exit',
 		'show message Cooked',
 	],
