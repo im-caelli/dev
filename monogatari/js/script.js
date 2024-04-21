@@ -10,12 +10,10 @@ monogatari.component ('main-screen').template (() => {
 
 // Define the messages used in the game.
 monogatari.action ('message').messages ({
-	'Help': {
-		title: 'Help',
-		subtitle: 'Some useful Links',
+	'Cooked': {
+		title: 'He Cooked',
 		body: `
-			<p><a href='https://developers.monogatari.io/documentation/'>Documentation</a> - Everything you need to know.</p>
-			<p><a href='https://monogatari.io/demo/'>Demo</a> - A simple Demo.</p>
+			<p>It was delicious</p>
 		`
 	}
 });
@@ -94,6 +92,15 @@ monogatari.characters ({
 	}
 });
 
+
+// Utility
+
+function delayTransition(s){
+	setTimeout(() => {
+		return true;
+	}, s);
+};
+
 monogatari.script ({
 	// The game starts here.
 	'Start': [
@@ -122,7 +129,7 @@ monogatari.script ({
 				'Warning': 'You must enter a name!'
 			}
 		},
-		'show character bo default',
+		'show character bo default with slideInLeft end-fadeOut',
 		'bo Hi {{player.name}}!',
 		{
 			'Choice': {
@@ -147,6 +154,7 @@ monogatari.script ({
 				'Dialog': 'bo What would you like to eat?',
 				'food-1': {
 					'Text': 'Cacio e Pepe',
+					'onChosen': function(){delayTransition(3000)},
 					'Do': 'jump food-1'
 				},
 				'food-2': {
@@ -164,24 +172,31 @@ monogatari.script ({
 
 	'No': [
 		'bo That\'s ok! Maybe later then.',
+		'hide character bo',
 		'bo See you!',
-		'end'
+		'jump exit'
 	],
 
 	// Food Choices
 	'food-1': [
-		'show character bo food-1',
+		'show character bo food-1 fadeIn end-fadeOut',
 		'bo Here you go! Enjoy!',
-		'end'
+		'jump exit'
 	],
 	'food-2': [
-		'show character bo food-2',
+		'show character bo food-2 bounceIn end-bounceIn',
 		'bo Here you go! Enjoy!',
-		'end'
+		'jump exit'
 	],
 	'food-3': [
-		'show character bo food-3',
+		'show character bo food-3 bounce end-fadeOut',
 		'bo Here you go! Enjoy!',
+		'jump exit',
+		'show message Cooked',
+	],
+
+	// Exit
+	'exit': [
 		'end'
 	]
 
