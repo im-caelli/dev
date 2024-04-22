@@ -83,6 +83,7 @@ monogatari.assets ('scenes', {
 monogatari.characters ({
 	'bo': {
 		name: 'Bo',
+		color: '#5ad3b2',
 		sprites: {
 			default: 'bo.png',
 			'food-1': 'bo-food-1.png',
@@ -94,7 +95,6 @@ monogatari.characters ({
 
 
 // Utility
-
 function delayTransition(s){
 	setTimeout(() => {
 		return true;
@@ -173,7 +173,7 @@ monogatari.script ({
 		'bo That\'s ok! Maybe later then.',
 		'hide character bo',
 		'bo See you!',
-		'jump exit'
+		'jump exit-no'
 	],
 
 	// Food Choices
@@ -183,14 +183,19 @@ monogatari.script ({
 		'show character bo food-1 fadeIn end-fadeOut',
 		'bo Here you go!',
 		'bo Enjoy!',
+		'hide character bo',
 		'jump exit'
 	],
 	'food-2': [
 		'hide character bo',
 		'bo *cooks*',
-		'show character bo food-2 bounceIn end-bounceIn',
+		// function () {
+		// 	delayTransition(3000);
+		// },
+		'show character bo food-2 bounceIn end-fadeOut',
 		'bo Here you go!',
 		'bo Enjoy!',
+		'hide character bo',
 		'jump exit'
 	],
 	'food-3': [
@@ -199,12 +204,19 @@ monogatari.script ({
 		'show character bo food-3 bounce end-fadeOut',
 		'bo Here you go!',
 		'bo Enjoy!',
+		'hide character bo',
 		'jump exit',
-		'show message Cooked',
 	],
 
 	// Exit
 	'exit': [
+		function () {
+			delayTransition(3000);
+		},
+		'show message Cooked',
+		'end'
+	],
+	'exit-no': [
 		'end'
 	]
 
