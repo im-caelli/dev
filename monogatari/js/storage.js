@@ -4,6 +4,8 @@
 monogatari.storage ({
 	player: {
 		name: '',
-		pronouns: ''
+		pronouns: '',
+		initiative: 3,
+		perception: 2
 	}
 });

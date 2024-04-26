@@ -15,6 +15,12 @@ monogatari.action ('message').messages ({
 		body: `
 			<p>It was delicious</p>
 		`
+	},
+	'Roll': {
+		title: 'Roll for initiative',
+		body: `
+			<button onClick="firstCheck()">Click me</button>
+		`
 	}
 });
 
@@ -101,6 +107,95 @@ function delayTransition(s){
 	}, s);
 };
 
+// Game
+// Dice Roll
+function rollDice(proficiency, condition = '') {
+	// Proficiency in player key
+	// Condition a or d for advantage/disadvantage
+
+	let dice = 20;
+	let roll;
+
+	let roll1 = Math.floor(Math.random() * dice) + 1;
+	let roll2 = Math.floor(Math.random() * dice) + 1;
+
+	if ( condition == 'a') {
+		roll1;
+		roll2;
+		roll = Math.max(roll1, roll2);
+
+		console.log('Rolling with advantage!');
+		console.log(roll1, roll2, 'Pick: ' + roll);
+
+	} else if (condition == 'd') {
+		roll1;
+		roll2;
+		roll = Math.min(roll1, roll2);
+
+		console.log('Rolling with disadvantage');
+		console.log(roll1, roll2, 'Pick: ' + roll);
+	} else {
+		roll = Math.floor(Math.random() * dice) + 1;
+	}
+
+	if (roll == 20) {
+		console.log('Critical Success!');
+		return 20;
+	} else if (roll == 1 ) {
+		console.log('Critical Fail');
+		return 1;
+	} else {
+		let total = roll + parseFloat(proficiency);
+
+		console.log('Base: ' + roll);
+		console.log('Proficiency: ' + proficiency);
+		console.log('Total: ' + total);
+		return total;
+	}
+}
+
+// function dcCheck(dc, checkRoll) {
+// 	if( checkRoll == 20 || checkRoll >= dc ) {
+// 			return "pass";
+// 	} else {
+// 			return 'fail';
+// 	}
+// }
+
+// document.addEventListener("DOMContentLoaded", (event) => {
+//   let die = document.querySelector(".die");
+
+// 	die.addEventListener("click", function (e) {
+// 		die.classList.add('rolling', 'show');
+
+// 		setTimeout(() => {
+// 			die.classList.remove('rolling');
+// 			die.setAttribute("data-face", rollDice( monogatari.storage ('player').perception));
+
+// 		}, 2000);
+// 	});
+// });
+
+
+function animateDice(checkRoll) {
+	let die = document.querySelector(".die");
+	let dieBox = document.querySelector(".content");
+	die.classList.add('rolling');
+	dieBox.classList.add('show');
+
+	setTimeout(() => {
+		die.classList.remove('rolling');
+		die.setAttribute("data-face", checkRoll);
+
+	}, 2000);
+}
+
+function hideDie() {
+	let dieBox = document.querySelector(".content");
+	dieBox.classList.remove('show');
+	return;
+}
+
 monogatari.script ({
 	// The game starts here.
 	'Start': [
@@ -141,6 +236,11 @@ monogatari.script ({
 				'No': {
 					'Text': 'No',
 					'Do': 'jump No'
+				},
+				'Roll': {
+					'Text': 'Roll for initiative',
+					// 'Do': 'show message Roll'
+					'Do': 'jump Roll-A'
 				}
 			}
 		}
@@ -175,6 +275,42 @@ monogatari.script ({
 		'bo See you!',
 		'jump exit-no'
 	],
+
+	'Roll-A': [
+		'bo rolling...',
+		{'Conditional': {
+			'Condition': function(){
+				let dc = 15;
+				console.log("DC: " + dc);
+  			let checkRoll = rollDice( monogatari.storage ('player').perception);
+				// Only show base role on dice
+				animateDice(checkRoll - monogatari.storage ('player').perception);
+				console.log("checkRoll: " + checkRoll);
+				if( checkRoll == 20 || checkRoll >= dc ) {
+						return "pass";
+				} else {
+						return 'fail';
+				}
+			},
+			'pass': 'jump pass',
+			'fail': 'jump fail',
+	}}
+	],
+
+	'pass': [
+		'bo You passed!',
+		hideDie,
+		'bo Yay',
+		'jump exit'
+	],
+
+	'fail': [
+		'bo You fail!',
+		hideDie,
+		'bo Oh no...',
+		'jump exit'
+	],
+
 
 	// Food Choices
 	'food-1': [
