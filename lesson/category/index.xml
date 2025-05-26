@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Category on Lessons</title>
-    <link>cymk8.github.io/category/</link>
+    <link>https://cael.li/dev/lesson/category/</link>
     <description>Recent content in Category on Lessons</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="cymk8.github.io/category/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://cael.li/dev/lesson/category/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Drawing</title>
-      <link>cymk8.github.io/category/drawing/</link>
+      <link>https://cael.li/dev/lesson/category/drawing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>cymk8.github.io/category/drawing/</guid>
+      <guid>https://cael.li/dev/lesson/category/drawing/</guid>
       <description></description>
     </item>
     <item>
       <title>Painting</title>
-      <link>cymk8.github.io/category/painting/</link>
+      <link>https://cael.li/dev/lesson/category/painting/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>cymk8.github.io/category/painting/</guid>
+      <guid>https://cael.li/dev/lesson/category/painting/</guid>
       <description></description>
     </item>
     <item>
       <title>Sculpture</title>
-      <link>cymk8.github.io/category/sculpture/</link>
+      <link>https://cael.li/dev/lesson/category/sculpture/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>cymk8.github.io/category/sculpture/</guid>
+      <guid>https://cael.li/dev/lesson/category/sculpture/</guid>
       <description></description>
     </item>
   </channel>
