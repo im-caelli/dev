@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sculpture on Lessons</title>
+    <link>cymk8.github.io/category/sculpture/</link>
+    <description>Recent content in Sculpture on Lessons</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="cymk8.github.io/category/sculpture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lesson 3 - Sculpture</title>
+      <link>cymk8.github.io/sculpture/lesson-3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>cymk8.github.io/sculpture/lesson-3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lesson 8 - Sculpture</title>
+      <link>cymk8.github.io/sculpture/lesson-8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>cymk8.github.io/sculpture/lesson-8/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lesson 9 - Sculpture</title>
+      <link>cymk8.github.io/sculpture/lesson-9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>cymk8.github.io/sculpture/lesson-9/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
